@@ -1,0 +1,14 @@
+scripts:
+    dev:
+        cmd: server.ts
+        watch: true
+        allow:
+            net: true
+            read: true
+            env: true
+    start:
+        cmd: server.ts
+        allow:
+            net: true
+            read: true
+            env: true
