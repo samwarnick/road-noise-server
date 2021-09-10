@@ -5,10 +5,14 @@ scripts:
         allow:
             net: true
             read: true
+            write: true
             env: true
+        unstable: true
     start:
         cmd: server.ts
         allow:
             net: true
             read: true
+            write: true
             env: true
+        unstable: true
