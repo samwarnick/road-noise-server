@@ -7,7 +7,7 @@ WORKDIR /app
 COPY deps.ts .
 RUN deno cache --unstable deps.ts
 
-COPY . .
-RUN deno cache --unstable server.ts
+# ADD . .
+# RUN deno cache --unstable server.ts
 
 RUN mkdir /_data
