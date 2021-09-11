@@ -1,8 +1,8 @@
-version: "3.8"
+version: "3.9"
 services:
   app:
     build: .
-    command: sh -c "deno run --unstable --allow-net --allow-env --allow-read --allow-write ${DEV_FLAGS:-} server.ts"
+    command: sh -c "deno run --unstable --allow-net --allow-env --allow-read --allow-write --watch server.ts"
     ports:
       - "7575:7575"
     volumes:
