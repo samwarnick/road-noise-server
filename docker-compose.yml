@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    command: sh -c "deno run --unstable --allow-net --allow-env --allow-read --allow-write ${DEV_FLAGS:-} server.ts"
+    ports:
+      - "7575:7575"
+    volumes:
+      - .:/app
+      - data:/_data
+    environment:
+      TOKEN: "${TOKEN}"
+      OPEN_WEATHER_KEY: "${OPEN_WEATHER_KEY}"
+      LAT: "${LAT}"
+      LON: "${LON}"
+
+volumes:
+  data:

@@ -1,8 +1,8 @@
 import { Application, Router, ensureFile } from "./deps.ts";
-import { loadEnv } from "./utils.ts";
+// import { loadEnv } from "./utils.ts";
 import { WeatherData, NoiseEntry } from "./interfaces.ts";
 
-await loadEnv();
+// await loadEnv();
 const TOKEN = Deno.env.get("TOKEN");
 
 const app = new Application();
