@@ -48,6 +48,7 @@ export interface WeatherData {
 }
 
 export interface NoiseEntry {
+  id: string;
   date: string;
   noiseLevel: number;
   weather: {
@@ -62,9 +63,9 @@ export interface NoiseEntry {
       speed: number;
       deg: number;
     };
-    rain: {
-      "1h"?: number;
-      "3h"?: number;
+    rain?: {
+      lastHour: number;
+      last3Hours: number;
     };
     condition: {
       category: string;

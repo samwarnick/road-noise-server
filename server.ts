@@ -30,6 +30,7 @@ router.post("/", async (request) => {
   const weatherData: WeatherData = await response.json();
 
   const entry: NoiseEntry = {
+    id: crypto.randomUUID(),
     date: new Date().toISOString(),
     noiseLevel: parseInt(await request.text()),
     weather: {
@@ -43,15 +44,19 @@ router.post("/", async (request) => {
       wind: {
         ...weatherData.wind,
       },
-      rain: {
-        ...weatherData.rain,
-      },
       condition: {
         category: weatherData.weather[0].main,
         description: weatherData.weather[0].description,
       },
     },
   };
+
+  if (weatherData.rain) {
+    entry.weather.rain = {
+      lastHour: weatherData.rain["1h"],
+      last3Hours: weatherData.rain["3h"],
+    };
+  }
 
   const data: NoiseEntry[] = JSON.parse(
     (await Deno.readTextFile("_data/data.json")) || "[]"
