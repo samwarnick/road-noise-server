@@ -7,7 +7,7 @@ services:
       - "7575:7575"
     volumes:
       - .:/app
-      - data:/_data
+      - data:/app/_data
     environment:
       TOKEN: "${TOKEN}"
       OPEN_WEATHER_KEY: "${OPEN_WEATHER_KEY}"

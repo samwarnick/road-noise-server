@@ -10,5 +10,4 @@ RUN deno cache --unstable deps.ts
 ADD . .
 RUN deno cache --unstable server.ts
 
-RUN mkdir /_data
-VOLUME /_data
+RUN mkdir /app/_data

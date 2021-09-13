@@ -1,8 +1,6 @@
-import { Application, Router, ensureFile } from "./deps.ts";
-// import { loadEnv } from "./utils.ts";
+import { Application, Router, ensureFile, log } from "./deps.ts";
 import { WeatherData, NoiseEntry } from "./interfaces.ts";
 
-// await loadEnv();
 const TOKEN = Deno.env.get("TOKEN");
 
 const app = new Application();
@@ -77,4 +75,13 @@ router.post("/", async (request) => {
 await ensureFile("_data/data.json");
 
 app.use(router);
-app.start({ port: 7575 });
+start();
+
+function start() {
+  try {
+    app.start({ port: 7575 });
+  } catch (error) {
+    log.critical(error.message, error);
+    start();
+  }
+}
