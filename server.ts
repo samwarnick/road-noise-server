@@ -1,4 +1,10 @@
-import { Application, Router, ensureFile, log } from "./deps.ts";
+import {
+  Application,
+  Router,
+  ensureFile,
+  log,
+  normalizeRoute,
+} from "./deps.ts";
 import { WeatherData, NoiseEntry } from "./interfaces.ts";
 
 const TOKEN = Deno.env.get("TOKEN");
@@ -74,14 +80,11 @@ router.post("/", async (request) => {
 
 await ensureFile("_data/data.json");
 
+app.use((request) => {
+  const method = request.method;
+  const route = normalizeRoute(request.url);
+  console.log(request.headers);
+  log.info(`${method} ${route}`);
+});
 app.use(router);
-start();
-
-function start() {
-  try {
-    app.start({ port: 7575 });
-  } catch (error) {
-    log.critical(error.message, error);
-    start();
-  }
-}
+app.start({ port: 7575 });
