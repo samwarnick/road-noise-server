@@ -83,7 +83,6 @@ await ensureFile("_data/data.json");
 app.use((request) => {
   const method = request.method;
   const route = normalizeRoute(request.url);
-  console.log(request.headers);
   log.info(`${method} ${route}`);
 });
 app.use(router);
